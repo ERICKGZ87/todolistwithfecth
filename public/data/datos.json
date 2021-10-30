@@ -1,0 +1,16 @@
+{
+    "tareas": [
+        {
+            "id": 0, "nombre": "lavar la ropa"
+        },
+        {
+            "id": 1, "nombre": "Hacer los codes"
+        },
+        {
+            "id": 3, "nombre": "cocinar la cena"
+        },
+        {
+            "id": 4, "nombre": "pintar el baño"
+        }
+    ]
+}
