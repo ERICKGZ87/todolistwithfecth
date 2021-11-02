@@ -1,7 +1,7 @@
 import { useState } from "react"
 import React, { useEffect } from 'react'
 import './App.css';
-import reportWebVitals from './reportWebVitals';
+
 
 
 const App = () => {
@@ -61,7 +61,7 @@ const App = () => {
 
         function getFullName(item, index) {
 
-          return [item.label].join(" ");
+          return [item.label];
         }
 
         setActividades(lista)
@@ -80,7 +80,10 @@ const App = () => {
    
       method: "PUT",
       body: JSON.stringify([
+        { label: "limpiar el cuarto", done: false },
         { label: "Make the bed", done: false },
+        { label: "Walk the dog", done: false },
+        { label: "Do the replits", done: false }
       
       ]),
       headers: {
@@ -107,17 +110,17 @@ const App = () => {
       })
   };
   const ActualizarTareas = () => {
-   
+    
+    setActividades(actividades.concat(tareas))
+    
     let opcionesdelRequest1 = {
       method: "PUT",
       body: JSON.stringify([
         { label:tareas, done: false },
-       
-    
+        { label: "Make the bed", done: false },
+        { label: "Walk the dog", done: false },
+        { label: "Do the replits", done: false }
       
-        
-   
-   
       ]),
       headers: {
         'content-type': 'application/json'
@@ -170,6 +173,7 @@ const App = () => {
   };
   useEffect(()=>{
    
+   CrearTareas()
     CargarTareas()
      
       }, [])
@@ -177,17 +181,18 @@ const App = () => {
     <>
 
     <h1>Lista de Tareas</h1>
-  
+
       {
         <ul>
           {(actividades.map((valor, indice) => {
             return (
-              <li key={indice}>{valor}</li>
+              <li key={indice}>{valor}{'  '}</li>
 
             )
           }))}<br />
         </ul>
       }
+ 
       <input
             type="text"
             name="actividades"
@@ -198,12 +203,13 @@ const App = () => {
             onChange={(e) => setTareas(e.target.value)}
             
           /><br/>
-          <button onClick={CrearUsuario}>Crear usuario</button><br/>
-          <button onClick={CrearTareas}>crear tareas</button><br/>
+         
+         
 
       <button onClick={ActualizarTareas}>ActualizarTareas</button><br/>
       <button onClick={BorrarTareas}>Borrar Todo</button><br/>
       <button onClick={CargarTareas}>Cargar tareas</button>
+     
     </>
   )
 };
